@@ -1,0 +1,6 @@
+{
+    "master_host": "{{ pillar['master-host'] }}",
+    "master_port": 9989,
+    "name": "ubuntu64",
+    "password": "{{ pillar['ubu64-slave']['password'] }}"
+}
