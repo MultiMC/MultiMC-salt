@@ -72,6 +72,16 @@ mmc-bbslave-ubu64:
 
 # Slave info files.
 
+# Boto config for Amazon S3 access
+/etc/private/mmc-bbot/boto.cfg:
+  file.managed:
+    - source: salt://docker/mmc-bbot/boto.cfg
+    - template: jinja
+    - makedirs: true
+    - user: root
+    - group: root
+    - mode: 0600
+
 /etc/private/mmc-bbot/passwords.json:
   file.managed:
     - source: salt://docker/mmc-bbot/passwords.json
