@@ -1,0 +1,31 @@
+master-host: ci.dwarven.engineer
+
+ubu64-slave:
+  password: slave-connection-password
+
+ubu32-slave:
+  password: slave-connection-password
+
+osx64-jandal-slave:
+  password: slave-connection-password
+
+win32-slave:
+  password: slave-connection-password
+
+
+bbot-forkk:
+  password: buildbot-webui-password
+
+bbot-peterix:
+  password: buildbot-webui-password
+
+bbot-jandal:
+  password: buildbot-webui-password
+
+bbot-drayshak:
+  password: buildbot-webui-password
+
+
+mmc-bbot-aws:
+  access_key: S3 AWS access key here
+  secret_key: Corresponding S3 AWS secret key

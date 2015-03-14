@@ -1,0 +1,33 @@
+users:
+  forkk:
+    fullname: Andrew Okin
+    shell: /bin/bash
+    uid: 1000
+    groups:
+      - docker
+    default_password: password
+    key_file: salt://users/forkk.id_ecdsa.pub
+
+  peterix:
+    fullname: Petr Mrazek
+    shell: /bin/bash
+    uid: 1001
+    groups:
+      - docker
+    default_password: password
+ 
+  drayshak:
+    fullname: Sky
+    shell: /bin/zsh
+    uid: 1002
+    groups:
+      - docker
+    default_password: password
+ 
+  jandal:
+    fullname: Jan Dalheimer
+    shell: /bin/bash
+    uid: 1003
+    groups:
+      - docker
+    default_password: password

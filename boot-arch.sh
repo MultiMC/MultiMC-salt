@@ -37,11 +37,11 @@ set -e
 pacman -S salt-zmq git
 
 # Next, set the salt master.
-sed -i "/master:/c\master: $MASTER_HOST" /etc/salt/minion
+sed -i "/^#\? *master *:/c\master: $MASTER_HOST" /etc/salt/minion
 
-
-# If we're setting up a master, clone the repo 
-git clone https://github.com/Forkk/fnet-salt /srv/salt
+# Link the required bits to /srv
+ln -s `pwd`/salt /srv/salt
+ln -s `pwd`/pillar /srv/pillar
 
 # If we are the salt master, set up the Salt master.
 if [ $I_AM_THE_MASTER ]; then
@@ -73,4 +73,7 @@ echo "Bootstrapping Salt..."
 salt-call state.sls boot
 
 # We're ready to run highstate. We'll let the user do that.
-echo "Ready! Please run 'salt-call state.highstate' to set up the server."
+echo "Almost ready! You will need to set up private information in pillar/private/*"
+echo "Helpful templates are provided, just copy them without the .template and tweak"
+echo "Then run 'salt-call state.highstate' to set up the server."
+
