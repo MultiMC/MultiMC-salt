@@ -1,23 +1,12 @@
 # Clone the MultiMC buildbot git repo
 mmc-bbot-image:
-  git.latest:
-    - name: https://github.com/MultiMC/MultiMC-Buildbot
-    - target: /root/mmc-bbot-git
+  file.recurse:
+    - name: /root/mmc-bbmaster
+    - source: salt://docker/mmc-bbot/mmc-bbmaster/
+    - clean: true
   docker.built:
     - name: mmc-bbot
-    - path: /root/mmc-bbot-git/
-    - require:
-      - git: mmc-bbot-image
-
-
-mmc-bbot-data:
-  docker.installed:
-    - name: mmc-bbot-data
-    - image: mmc-bbot
-    - volumes:
-      - /buildbot
-    - require:
-      - docker: mmc-bbot-image
+    - path: /root/mmc-bbmaster/
 
 mmc-bbot:
   file.managed:
@@ -30,7 +19,7 @@ mmc-bbot:
     - enable: True
     - require:
       - file: mmc-bbot
-      - docker: mmc-bbot-data
+      - docker: mmc-bbot-image
 
 
 mmc-bbslave-service:
@@ -68,6 +57,15 @@ mmc-bbslave-ubu64:
     - require:
       - file: mmc-bbslave-service
       - docker: mmc-bbslave-ubu64
+
+/root/mmc-bbmaster-data/buildbot.cfg:
+  file.managed:
+    - source: salt://docker/mmc-bbot/master.cfg
+    - template: jinja
+    - makedirs: true
+    - user: root
+    - group: root
+    - mode: 0600
 
 
 # Slave info files.
