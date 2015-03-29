@@ -8,7 +8,15 @@ MAINTAINER Andrew Okin, forkk@forkk.net
 
 # We need "apt-add-repository"
 RUN apt-get update
-RUN apt-get install -y software-properties-common python-software-properties
+RUN apt-get install -y software-properties-common python-software-properties curl
+
+# Install node.js
+RUN curl -sL https://deb.nodesource.com/setup | bash -
+RUN apt-get install -y nodejs
+
+# Install the site builder packages
+RUN npm install -g grunt-cli
+RUN npm install -g docpad@6.69.0
 
 # Install Qt
 RUN apt-add-repository -y ppa:beineri/opt-qt541
