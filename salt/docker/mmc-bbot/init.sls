@@ -58,6 +58,23 @@ mmc-bbslave-ubu64:
       - file: mmc-bbslave-service
       - docker: mmc-bbslave-ubu64
 
+mmc-bbslave-site:
+  file.recurse:
+    - name: /root/mmc-bbslave-site
+    - source: salt://docker/mmc-bbot/mmc-bbslave-site/
+    - clean: true
+  docker.built:
+    - name: forkk/mmc-bbslave-site
+    - path: /root/mmc-bbslave-site/
+    - require:
+      - file: mmc-bbslave-site
+  service.running:
+    - name: mmc-bbslave@site
+    - enable: True
+    - require:
+      - file: mmc-bbslave-service
+      - docker: mmc-bbslave-site
+
 /root/mmc-bbmaster-data/buildbot.cfg:
   file.managed:
     - source: salt://docker/mmc-bbot/master.cfg
@@ -74,6 +91,16 @@ mmc-bbslave-ubu64:
 /etc/private/mmc-bbot/boto.cfg:
   file.managed:
     - source: salt://docker/mmc-bbot/boto.cfg
+    - template: jinja
+    - makedirs: true
+    - user: root
+    - group: root
+    - mode: 0600
+
+# s3cmd config for Amazon S3 access
+/etc/private/mmc-bbot/s3cmd.cfg:
+  file.managed:
+    - source: salt://docker/mmc-bbot/s3cmd.cfg
     - template: jinja
     - makedirs: true
     - user: root
@@ -106,3 +133,13 @@ mmc-bbslave-ubu64:
     - user: root
     - group: root
     - mode: 0600
+
+/etc/private/mmc-bbslave-site/info.json:
+  file.managed:
+    - source: salt://docker/mmc-bbot/site-info.json
+    - template: jinja
+    - makedirs: true
+    - user: root
+    - group: root
+    - mode: 0600
+

@@ -24,13 +24,14 @@ RUN apt-get install -y \
 
 RUN pip3 install 'git+https://github.com/MultiMC/repoman2.git'
 
-RUN apt-get install -y zip unzip
+RUN apt-get install -y zip unzip s3cmd
 
 RUN pip install awscli
 
 # Symlink Boto config (this file will be injected into the container in the
 # /buildbot/private folder.
 RUN ln -s /buildbot/private/boto.cfg /etc/boto.cfg
+RUN ln -s /buildbot/private/s3cmd.cfg /etc/s3cmd.cfg
 
 EXPOSE 8010 9989
 

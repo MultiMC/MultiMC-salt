@@ -12,6 +12,9 @@ osx64-jandal-slave:
 win32-slave:
   password: slave-connection-password
 
+site-slave:
+  password: slave-connection-password
+
 
 bbot-forkk:
   password: buildbot-webui-password
