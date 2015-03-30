@@ -95,12 +95,12 @@ nginx:
           enabled: True
           config:
             - server:
-              - server_name: ci.multimc.org
+              - server_name: ci.multimc.org siteci.multimc.org ci.new.multimc.org
               - listen: 80
               - location /:
                 - proxy_pass: http://localhost:8010
-                - proxy_set_header: Host $host;
-                - proxy_set_header: X-Real-IP $remote_addr;
-                - proxy_set_header: X-Forwarded-for $remote_addr;
+                - proxy_set_header: Host $host
+                - proxy_set_header: X-Real-IP $remote_addr
+                - proxy_set_header: X-Forwarded-for $remote_addr
 
 
