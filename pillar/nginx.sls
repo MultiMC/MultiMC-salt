@@ -95,7 +95,7 @@ nginx:
           enabled: True
           config:
             - server:
-              - server_name: ci.multimc.org siteci.multimc.org ci.new.multimc.org
+              - server_name: ci.multimc.org ci.dwarven.engineer
               - listen: 80
               - location /:
                 - proxy_pass: http://localhost:8010
