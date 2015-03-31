@@ -75,6 +75,23 @@ mmc-bbslave-site:
       - file: mmc-bbslave-service
       - docker: mmc-bbslave-site
 
+mmc-bbslave-translator:
+  file.recurse:
+    - name: /root/mmc-bbslave-translator
+    - source: salt://docker/mmc-bbot/mmc-bbslave-translator/
+    - clean: true
+  docker.built:
+    - name: forkk/mmc-bbslave-translator
+    - path: /root/mmc-bbslave-translator/
+    - require:
+      - file: mmc-bbslave-translator
+  service.running:
+    - name: mmc-bbslave@translator
+    - enable: True
+    - require:
+      - file: mmc-bbslave-service
+      - docker: mmc-bbslave-translator
+
 /root/mmc-bbmaster-data/buildbot.cfg:
   file.managed:
     - source: salt://docker/mmc-bbot/master.cfg
@@ -143,3 +160,11 @@ mmc-bbslave-site:
     - group: root
     - mode: 0600
 
+/etc/private/mmc-bbslave-translator/info.json:
+  file.managed:
+    - source: salt://docker/mmc-bbot/translator-info.json
+    - template: jinja
+    - makedirs: true
+    - user: root
+    - group: root
+    - mode: 0600
