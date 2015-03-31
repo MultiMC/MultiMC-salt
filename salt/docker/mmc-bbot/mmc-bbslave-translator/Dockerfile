@@ -29,7 +29,9 @@ RUN cat /slave/bbinfo.py /slave/buildbot.tac > /slave/buildbot.tac.tmp && \
     sed -i s/\'SLAVENAME\'/bbinfo[\'name\']/ /slave/buildbot.tac
 
 # Set things up for github access
-RUN cat /dev/zero | ssh-keygen -q -N '' -f /root/.ssh/id_rsa -C 'MMC-translator'
+RUN cat /dev/zero | ssh-keygen -q -N '' -f /root/.ssh/id_rsa -C 'MultiMC Translator'
 RUN ssh-keyscan github.com >> ~/.ssh/known_hosts
+RUN git config --global user.name "MultiMC Translator"
+RUN git config --global user.email mmc-translator@dethware.org
 
 CMD ["buildslave", "start", "--nodaemon", "/slave"]
