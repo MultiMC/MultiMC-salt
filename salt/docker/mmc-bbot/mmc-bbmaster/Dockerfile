@@ -18,6 +18,10 @@ RUN apt-get install -y \
     python3-dev \
     python3-pip
 
+RUN apt-get install -y \
+    python-requests \
+    python-lxml
+
 # Install git
 RUN apt-get install -y \
     git
@@ -32,6 +36,19 @@ RUN pip install awscli
 # /buildbot/private folder.
 RUN ln -s /buildbot/private/boto.cfg /etc/boto.cfg
 RUN ln -s /buildbot/private/s3cmd.cfg /etc/s3cmd.cfg
+
+# make sure wget and stuff for the patreon script is available
+RUN apt-get install -y \
+    wget \
+    python-requests \
+    python-lxml
+
+RUN pip install boto
+
+# add patron scraper script so it can be used by schedulers
+WORKDIR /usr/bin
+RUN wget https://rawgit.com/MultiMC/PatronScraper2/master/patronscraper.py
+RUN chmod +x patronscraper.py
 
 EXPOSE 8010 9989
 
