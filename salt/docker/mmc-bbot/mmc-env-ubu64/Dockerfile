@@ -30,7 +30,10 @@ RUN apt-get install -y zlib1g-dev
 RUN apt-add-repository -y ppa:kalakris/cmake
 RUN apt-add-repository -y ppa:ubuntu-toolchain-r/test
 RUN apt-get update
-RUN apt-get install -y cmake g++-4.8 git build-essential
+RUN apt-get install -y g++-5 git build-essential
+RUN apt-get install wget
+RUN wget http://www.cmake.org/files/v3.2/cmake-3.2.3-Linux-x86_64.sh
+RUN sh cmake-3.2.3-Linux-x86_64.sh --skip-license --prefix=/
 
 # Install Java
 RUN apt-get install -y openjdk-7-jdk

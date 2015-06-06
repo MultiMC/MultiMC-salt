@@ -3,9 +3,6 @@ master-host: ci.dwarven.engineer
 ubu64-slave:
   password: slave-connection-password
 
-ubu32-slave:
-  password: slave-connection-password
-
 osx64-jandal-slave:
   password: slave-connection-password
 

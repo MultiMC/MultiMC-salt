@@ -142,15 +142,6 @@ mmc-bbslave-translator:
     - group: root
     - mode: 0600
 
-/etc/private/mmc-bbslave-ubu32/info.json:
-  file.managed:
-    - source: salt://docker/mmc-bbot/ubu32-info.json
-    - template: jinja
-    - makedirs: true
-    - user: root
-    - group: root
-    - mode: 0600
-
 /etc/private/mmc-bbslave-site/info.json:
   file.managed:
     - source: salt://docker/mmc-bbot/site-info.json
