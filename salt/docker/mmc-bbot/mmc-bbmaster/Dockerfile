@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
     python-pip
 
 # Install Buildbot
-RUN pip install buildbot
+RUN pip install buildbot==0.8.10
 
 # Install Python 3 tools
 RUN apt-get install -y \
