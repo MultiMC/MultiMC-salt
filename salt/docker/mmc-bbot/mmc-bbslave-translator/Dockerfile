@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
     python-pip
 
 # Install Buildbot
-RUN pip install buildbot-slave
+RUN pip install buildbot-slave==0.8.10
 
 # Create the buildslave
 RUN buildslave create-slave -r /slave MASTERHOST:9989 SLAVENAME PASSWORD
