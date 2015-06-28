@@ -1,5 +1,8 @@
 master-host: ci.dwarven.engineer
 
+ubu32-slave:
+  password: slave-connection-password
+
 ubu64-slave:
   password: slave-connection-password
 
