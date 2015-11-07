@@ -19,9 +19,9 @@ RUN npm install -g grunt-cli
 RUN npm install -g docpad@6.69.0
 
 # Install Qt
-RUN apt-add-repository -y ppa:beineri/opt-qt541
+RUN apt-add-repository -y ppa:beineri/opt-qt551
 RUN apt-get update
-RUN apt-get install -y qt54base qt54svg qt54tools qt54x11extras qt54webkit
+RUN apt-get install -y qt55base qt55svg qt55tools qt55x11extras qt55webkit
 
 # Install Other Dependencies
 RUN apt-get install -y zlib1g-dev
@@ -32,8 +32,8 @@ RUN apt-add-repository -y ppa:ubuntu-toolchain-r/test
 RUN apt-get update
 RUN apt-get install -y g++-5 git build-essential
 RUN apt-get install wget
-RUN wget http://www.cmake.org/files/v3.2/cmake-3.2.3-Linux-x86_64.sh
-RUN sh cmake-3.2.3-Linux-x86_64.sh --skip-license --prefix=/
+RUN wget --no-check-certificate https://cmake.org/files/v3.3/cmake-3.3.2-Linux-x86_64.sh
+RUN sh cmake-3.3.2-Linux-x86_64.sh --skip-license --prefix=/
 
 # Install Java
 RUN apt-get install -y openjdk-7-jdk

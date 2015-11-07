@@ -32,10 +32,6 @@ nginx:
           worker_connections: 768
         http:
           sendfile: 'on'
-          include:
-            - /etc/nginx/mime.types
-            - /etc/nginx/conf.d/*.conf
-            - /etc/nginx/sites-enabled/*
 
     vhosts:
       # vhost declarations
@@ -57,45 +53,11 @@ nginx:
                 - $uri
                 - $uri/
                 - /index.html =404
-        fnet-site:
-          enabled: False
-          config:
-            - server:
-              - server_name: www.forkk.net
-              - listen: 80
-              - rewrite: ^ http://forkk.net$request_uri redirect
-            - server:
-              - server_name: forkk.net
-              - listen: 80
-              - root: /var/www/forkk.net
-              - index:
-                - index.html
-              - location /:
-                - try_files:
-                  - $uri
-                  - $uri/ =404
-        mmc-site:
-          enabled: False
-          config:
-            - server:
-              - server_name: www.multimc.org
-              - listen: 80
-              - rewrite: ^ http://multimc.org$request_uri redirect
-            - server:
-              - server_name: multimc.org
-              - listen: 80
-              - root: /var/www/multimc.org
-              - index:
-                - index.html
-              - location /:
-                - try_files:
-                  - $uri
-                  - $uri/ =404
         mmc-ci:
           enabled: True
           config:
             - server:
-              - server_name: ci.multimc.org ci.dwarven.engineer
+              - server_name: ci.multimc.org
               - listen: 80
               - location /:
                 - proxy_pass: http://localhost:8010
@@ -103,4 +65,14 @@ nginx:
                 - proxy_set_header: X-Real-IP $remote_addr
                 - proxy_set_header: X-Forwarded-for $remote_addr
 
+        mmc-translate:
+          enabled: True
+          config:
+            - server:
+              - server_name: translate.multimc.org
+              - listen: 80
+              - location /:
+                - proxy_pass: http://localhost:8000
+                - proxy_set_header: Host $host
+                - proxy_set_header: X-Real-IP $remote_addr
 
