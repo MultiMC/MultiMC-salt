@@ -20,6 +20,8 @@ mmc-bbot:
     - require:
       - file: mmc-bbot
       - docker: mmc-bbot-image
+    - watch:
+      - file: /root/mmc-bbmaster-data/buildbot.cfg
 
 
 mmc-bbslave-service:
