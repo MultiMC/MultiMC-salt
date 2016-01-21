@@ -9,3 +9,7 @@ ExecStartPre=-/usr/bin/docker kill mmc-bbslave-%i
 ExecStartPre=-/usr/bin/docker rm mmc-bbslave-%i
 ExecStart=/usr/bin/docker run --rm -v /etc/private/mmc-bbslave-%i/:/slave/private/ --name mmc-bbslave-%i forkk/mmc-bbslave-%i
 ExecStop=/usr/bin/docker stop mmc-bbslave-%i
+
+[Install]
+WantedBy=multi-user.target
+

@@ -9,3 +9,7 @@ ExecStartPre=-/usr/bin/docker kill mmc-bbot
 ExecStartPre=-/usr/bin/docker rm mmc-bbot
 ExecStart=/usr/bin/docker run --rm -v /root/mmc-bbmaster-data/:/buildbot/ -v /etc/private/mmc-bbot/:/buildbot/private/ -p 8010:8010 -p 9989:9989 --name mmc-bbot mmc-bbot buildbot start --nodaemon /buildbot
 ExecStop=/usr/bin/docker stop mmc-bbot
+
+[Install]
+WantedBy=multi-user.target
+
