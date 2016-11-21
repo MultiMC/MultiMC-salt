@@ -20,8 +20,10 @@ RUN npm install -g docpad@6.69.0
 
 # Install Qt
 RUN apt-add-repository -y ppa:beineri/opt-qt551
+RUN apt-add-repository -y ppa:beineri/opt-qt542
 RUN apt-get update
 RUN apt-get install -y qt55base qt55svg qt55tools qt55x11extras qt55webkit
+RUN apt-get install -y qt54base qt54svg qt54tools qt54x11extras qt54webkit
 
 # Install Other Dependencies
 RUN apt-get install -y zlib1g-dev
