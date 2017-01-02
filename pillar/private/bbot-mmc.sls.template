@@ -34,3 +34,6 @@ bbot-drayshak:
 mmc-bbot-aws:
   access_key: S3 AWS access key here
   secret_key: Corresponding S3 AWS secret key
+
+mmc-bbot-github:
+  access_token: See https://github.com/settings/tokens, repo:status is needed.

@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y python-dev python-pip python-requests p
 
 # Install Buildbot
 RUN pip install buildbot==0.8.14
+RUN pip install txgithub
 RUN pip3 install 'git+https://github.com/MultiMC/repoman2.git'
 
 # Symlink s3 configs (boto is required by python scripts, s3cmd by website uploads triggered by buildbot)
