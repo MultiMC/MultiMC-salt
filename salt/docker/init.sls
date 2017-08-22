@@ -9,7 +9,8 @@ python2-pip:
 
 docker-py:
   pip.installed:
-    - name: docker-py >= 0.5.0, < 0.6.0
+    - name: docker-py
     - bin_env: /bin/pip2
+    - reload_modules: True
     - require:
       - pkg: python2-pip
