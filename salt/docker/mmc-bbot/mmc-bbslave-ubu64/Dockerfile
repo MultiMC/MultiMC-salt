@@ -1,9 +1,7 @@
 # Ubuntu with a Buildbot Slave
-#
-# VERSION 1.0
 
 FROM forkk/mmc-env-ubu64
-MAINTAINER Andrew Okin, forkk@forkk.net
+MAINTAINER Petr Mrázek, peterix@gmail.com
 
 # Install pip
 RUN apt-get update && apt-get install -y \

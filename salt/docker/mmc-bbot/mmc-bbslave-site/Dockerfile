@@ -1,21 +1,32 @@
-# Ubuntu with a Buildbot Slave
-#
-# VERSION 1.0
+# Ubuntu with a Buildbot Slave and NodeJS for buidling the static website
 
-FROM forkk/mmc-env-ubu64
-MAINTAINER Andrew Okin, forkk@forkk.net
+# Start with Ubuntu Precise
+FROM ubuntu:trusty
+MAINTAINER Petr Mrázek, peterix@gmail.com
 
-# Install pip
+# We need "apt-add-repository"
 RUN apt-get update && apt-get install -y \
+    software-properties-common \
+    python-software-properties \
+    curl \
+    git \
+    wget \
     python-dev \
     python-pip
+
+# Download and install hugo
+ENV HUGO_VERSION 0.31.1
+ENV HUGO_BINARY hugo_${HUGO_VERSION}_Linux-64bit.deb
+
+# Get and install hugo
+ADD https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/${HUGO_BINARY} /tmp/hugo.deb
+RUN dpkg -i /tmp/hugo.deb && rm /tmp/hugo.deb
 
 # Install Buildbot
 RUN pip install buildbot-slave==0.8.10
 
 # Create the buildslave
 RUN buildslave create-slave -r /slave MASTERHOST:9989 SLAVENAME PASSWORD
-
 
 # Add hacky stuff to load slave info.
 COPY bbinfo.py /slave/bbinfo.py
