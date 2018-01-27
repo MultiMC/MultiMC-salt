@@ -4,7 +4,7 @@ mmc-bbot-image:
     - name: /root/mmc-bbmaster
     - source: salt://docker/mmc-bbot/mmc-bbmaster/
     - clean: true
-  docker.built:
+  docker_image.present:
     - name: mmc-bbot
     - path: /root/mmc-bbmaster/
 
@@ -19,7 +19,7 @@ mmc-bbot:
     - enable: True
     - require:
       - file: mmc-bbot
-      - docker: mmc-bbot-image
+      - docker_image: mmc-bbot-image
     - watch:
       - file: /root/mmc-bbmaster-data/buildbot.cfg
 
@@ -37,7 +37,7 @@ mmc-env-ubu64:
     - name: /root/mmc-env-ubu64
     - source: salt://docker/mmc-bbot/mmc-env-ubu64/
     - clean: true
-  docker.built:
+  docker_image.present:
     - name: forkk/mmc-env-ubu64
     - path: /root/mmc-env-ubu64/
     - require:
@@ -48,7 +48,7 @@ mmc-bbslave-ubu64:
     - name: /root/mmc-bbslave-ubu64
     - source: salt://docker/mmc-bbot/mmc-bbslave-ubu64/
     - clean: true
-  docker.built:
+  docker_image.present:
     - name: forkk/mmc-bbslave-ubu64
     - path: /root/mmc-bbslave-ubu64/
     - require:
@@ -58,14 +58,14 @@ mmc-bbslave-ubu64:
     - enable: True
     - require:
       - file: mmc-bbslave-service
-      - docker: mmc-bbslave-ubu64
+      - docker_image: mmc-bbslave-ubu64
 
 mmc-bbslave-site:
   file.recurse:
     - name: /root/mmc-bbslave-site
     - source: salt://docker/mmc-bbot/mmc-bbslave-site/
     - clean: true
-  docker.built:
+  docker_image.present:
     - name: forkk/mmc-bbslave-site
     - path: /root/mmc-bbslave-site/
     - require:
@@ -75,14 +75,14 @@ mmc-bbslave-site:
     - enable: True
     - require:
       - file: mmc-bbslave-service
-      - docker: mmc-bbslave-site
+      - docker_image: mmc-bbslave-site
 
 mmc-bbslave-translator:
   file.recurse:
     - name: /root/mmc-bbslave-translator
     - source: salt://docker/mmc-bbot/mmc-bbslave-translator/
     - clean: true
-  docker.built:
+  docker_image.present:
     - name: forkk/mmc-bbslave-translator
     - path: /root/mmc-bbslave-translator/
     - require:
@@ -92,7 +92,7 @@ mmc-bbslave-translator:
     - enable: True
     - require:
       - file: mmc-bbslave-service
-      - docker: mmc-bbslave-translator
+      - docker_image: mmc-bbslave-translator
 
 /root/mmc-bbmaster-data/buildbot.cfg:
   file.managed:
