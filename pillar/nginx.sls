@@ -65,16 +65,6 @@ nginx:
                 - proxy_set_header: X-Real-IP $remote_addr
                 - proxy_set_header: X-Forwarded-for $remote_addr
 
-        mmc-translate:
-          enabled: True
-          config:
-            - server:
-              - server_name: translate.multimc.org
-              - listen: 80
-              - location /:
-                - proxy_pass: http://localhost:8000
-                - proxy_set_header: Host $host
-                - proxy_set_header: X-Real-IP $remote_addr
         mcarch-ipfs:
           enabled: True
           config:
