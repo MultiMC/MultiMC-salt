@@ -6,7 +6,8 @@ mmc-bbot-image:
     - clean: true
   docker_image.present:
     - name: mmc-bbot
-    - path: /root/mmc-bbmaster/
+    - build: /root/mmc-bbmaster/
+    - tag: latest
 
 mmc-bbot:
   file.managed:
@@ -39,7 +40,8 @@ mmc-env-ubu64:
     - clean: true
   docker_image.present:
     - name: forkk/mmc-env-ubu64
-    - path: /root/mmc-env-ubu64/
+    - build: /root/mmc-env-ubu64/
+    - tag: latest
     - require:
       - file: mmc-env-ubu64
 
@@ -50,7 +52,8 @@ mmc-bbslave-ubu64:
     - clean: true
   docker_image.present:
     - name: forkk/mmc-bbslave-ubu64
-    - path: /root/mmc-bbslave-ubu64/
+    - build: /root/mmc-bbslave-ubu64/
+    - tag: latest
     - require:
       - file: mmc-bbslave-ubu64
   service.running:
@@ -67,7 +70,8 @@ mmc-bbslave-site:
     - clean: true
   docker_image.present:
     - name: forkk/mmc-bbslave-site
-    - path: /root/mmc-bbslave-site/
+    - build: /root/mmc-bbslave-site/
+    - tag: latest
     - require:
       - file: mmc-bbslave-site
   service.running:
@@ -84,7 +88,8 @@ mmc-bbslave-translator:
     - clean: true
   docker_image.present:
     - name: forkk/mmc-bbslave-translator
-    - path: /root/mmc-bbslave-translator/
+    - build: /root/mmc-bbslave-translator/
+    - tag: latest
     - require:
       - file: mmc-bbslave-translator
   service.running:
